@@ -11,6 +11,7 @@ lerna-debug.log*
 node_modules
 auto-imports.d.ts
 components.d.ts
+.eslintrc-auto-import.json
 dist
 dist-ssr
 *.local

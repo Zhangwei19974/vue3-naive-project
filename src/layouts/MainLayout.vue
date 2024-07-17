@@ -70,7 +70,7 @@
       display: flex;
       flex-direction: column;
     }
-    s .mainLayout-container_layout-content {
+    .mainLayout-container_layout-content {
       flex: 1;
     }
   }
