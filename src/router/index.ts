@@ -1,3 +1,4 @@
+import { Home16Filled, Home16Regular } from '@vicons/fluent';
 import { createDiscreteApi } from 'naive-ui';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
@@ -14,11 +15,21 @@ const routes: RouteRecordRaw[] = [
           default: () => import('@/views/MainView/index.vue'),
         },
         redirect: '/main/dash',
+        meta: {
+          title: '主界面',
+          icon: Home16Regular,
+          fulllIcon: '',
+          showInMenu: Home16Filled,
+        },
         children: [
           {
             path: '/main/dash',
             components: {
               default: () => import('@/views/MainView/DashView/index.vue'),
+            },
+            meta: {
+              icon: 'mdi:view-dashboard',
+              fulllIcon: '',
             },
           },
           {
@@ -42,9 +53,9 @@ const { loadingBar } = createDiscreteApi(['loadingBar']);
 router.beforeEach((to, from, next) => {
   loadingBar.start();
   next();
-  loadingBar.finish();
+  // loadingBar.finish();
 });
 
-// router.afterEach((to, from) => {
-//   loadingBar.finish();
-// });
+router.afterEach((to, from) => {
+  loadingBar.finish();
+});
