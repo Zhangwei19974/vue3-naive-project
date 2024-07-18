@@ -2,7 +2,6 @@ import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import pluginVue from 'eslint-plugin-vue';
-import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   { files: ['**/*.{js,mjs,cjs,ts,vue}'] },
@@ -10,9 +9,12 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   ...pluginVue.configs['flat/essential'],
-  eslintConfigPrettier,
   {
     files: ['**/*.vue'],
+    languageOptions: { parserOptions: { parser: tseslint.parser } },
+  },
+  {
+    // files: ['**/*.vue'],
     rules: {
       // 在这里添加你的 ESLint 规则
       quotes: ['error', 'single'], // 设置为单引号

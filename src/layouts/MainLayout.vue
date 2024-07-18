@@ -1,56 +1,20 @@
 <template>
   <div class="mainLayout-container">
     <n-layout class="mainLayout-container_layout">
-      <n-layout-header> header asd</n-layout-header>
+      <n-layout-header>
+        <slot name="header"> </slot>
+      </n-layout-header>
       <n-layout class="mainLayout-container_layout-content" has-sider>
-        <n-layout-sider>silder </n-layout-sider>
-        <n-layout-content
-          >asd
-
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
-          <div>asdasd</div>
+        <n-layout-sider>
+          <slot name="sider"></slot>
+        </n-layout-sider>
+        <n-layout-content>
+          <slot></slot>
         </n-layout-content>
       </n-layout>
-      <n-layout-footer> footer </n-layout-footer>
+      <n-layout-footer>
+        <slot name="footer"></slot>
+      </n-layout-footer>
     </n-layout>
   </div>
 </template>
