@@ -11,7 +11,7 @@ importers:
       '@types/node':
         specifier: ^20.14.10
         version: 20.14.10
-      lodash:
+      lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
       pinia:
@@ -30,6 +30,9 @@ importers:
       '@eslint/js':
         specifier: ^9.6.0
         version: 9.6.0
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@vicons/antd':
         specifier: ^0.12.0
         version: 0.12.0
@@ -433,8 +436,8 @@ packages:
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
-  '@types/lodash@4.17.6':
-    resolution: {integrity: sha512-OpXEVoCKSS3lQqjx9GGGOapBeuW5eUboYHRlHP9urXPX25IKZ6AnP5ZRxtVf63iieUbsHxLn8NQ5Nlftc6yzAA==}
+  '@types/lodash@4.17.7':
+    resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
 
   '@types/node@20.14.10':
     resolution: {integrity: sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==}
@@ -1558,9 +1561,9 @@ snapshots:
 
   '@types/lodash-es@4.17.12':
     dependencies:
-      '@types/lodash': 4.17.6
+      '@types/lodash': 4.17.7
 
-  '@types/lodash@4.17.6': {}
+  '@types/lodash@4.17.7': {}
 
   '@types/node@20.14.10':
     dependencies:
@@ -2173,7 +2176,7 @@ snapshots:
       '@css-render/plugin-bem': 0.15.14(css-render@0.15.14)
       '@css-render/vue3-ssr': 0.15.14(vue@3.4.31(typescript@5.5.3))
       '@types/katex': 0.16.7
-      '@types/lodash': 4.17.6
+      '@types/lodash': 4.17.7
       '@types/lodash-es': 4.17.12
       async-validator: 4.2.5
       css-render: 0.15.14

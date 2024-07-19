@@ -21,6 +21,7 @@ export default defineConfig({
           ],
         },
         'vue-router',
+        'pinia',
       ],
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx

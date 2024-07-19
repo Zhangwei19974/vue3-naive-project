@@ -8,12 +8,12 @@
         </div>
       </router-view>
     </template>
-    <template #sider
-      ><router-view name="sider" v-slot="{ Component }">
+    <template #sider>
+      <router-view name="sider" v-slot="{ Component }">
         <component v-if="Component" :is="Component" />
-        <div v-else>asdasda</div>
-      </router-view></template
-    >
+        <default-sider v-else></default-sider>
+      </router-view>
+    </template>
     <template #footer>
       <router-view name="footer" v-slot="{ Component }">
         <component v-if="Component" :is="Component" />
@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import DefauleNav from '@/layouts/Nav/DefauleNav.vue';
 import MainLayout from './../../layouts/MainLayout.vue';
+import DefaultSider from '@/layouts/Nav/DefaultSider.vue';
 </script>
 
 <style scoped></style>

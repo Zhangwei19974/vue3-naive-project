@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import {
-  ConfigProviderProps,
-  GlobalTheme,
   GlobalThemeOverrides,
   NConfigProvider,
   NLoadingBarProvider,
@@ -15,7 +13,7 @@ const themeOverride: GlobalThemeOverrides = {
 </script>
 
 <template>
-  <n-config-provider :themeOverride="themeOverride">
+  <n-config-provider :themeOverride="themeOverride" style="height: 100vh">
     <n-loading-bar-provider>
       <router-view></router-view>
     </n-loading-bar-provider>

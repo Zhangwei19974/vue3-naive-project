@@ -1,46 +1,29 @@
 import { Home16Filled, Home16Regular } from '@vicons/fluent';
 import { createDiscreteApi } from 'naive-ui';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { mainRouter } from './children/mainRouter';
+import { useAppStore } from '@/store/useAppStore';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    name: 'app',
     component: () => import('@/App.vue'),
     redirect: '/main',
-    children: [
-      {
-        path: '/main',
-        // component: () => import('@/views/MainView/index.vue'),
-        components: {
-          default: () => import('@/views/MainView/index.vue'),
-        },
-        redirect: '/main/dash',
-        meta: {
-          title: '主界面',
-          icon: Home16Regular,
-          fulllIcon: '',
-          showInMenu: Home16Filled,
-        },
-        children: [
-          {
-            path: '/main/dash',
-            components: {
-              default: () => import('@/views/MainView/DashView/index.vue'),
-            },
-            meta: {
-              icon: 'mdi:view-dashboard',
-              fulllIcon: '',
-            },
-          },
-          {
-            path: '/main/about',
-            components: {
-              default: () => import('@/views/MainView/AboutView/index.vue'),
-            },
-          },
-        ],
-      },
-    ],
+    children: [],
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/LoginView/index.vue'),
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'error',
+    component: () => import('@/views/ErrorView/index.vue'),
+    meta: {
+      title: '访问的页面不存在',
+    },
   },
 ];
 
@@ -51,8 +34,18 @@ export const router = createRouter({
 const { loadingBar } = createDiscreteApi(['loadingBar']);
 
 router.beforeEach((to, from, next) => {
-  loadingBar.start();
-  next();
+  const appStore = useAppStore();
+  const { hasAuth } = appStore;
+  // 没有权限的路由拦截
+  if (!hasAuth && to.path !== '/login') {
+    next('/login');
+    return;
+  }
+  const canJump = true;
+  if (canJump) {
+    loadingBar.start();
+    const res = next();
+  }
   // loadingBar.finish();
 });
 
