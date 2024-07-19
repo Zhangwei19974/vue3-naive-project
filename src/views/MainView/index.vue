@@ -20,7 +20,12 @@
         <div v-else>asdasda</div>
       </router-view>
     </template>
-    <router-view></router-view>
+    <div class="main-content">
+      <div class="main-content_header" v-if="appConfig.showNavigationTab">
+        页签
+      </div>
+      <router-view></router-view>
+    </div>
   </main-layout>
 </template>
 
@@ -28,6 +33,13 @@
 import DefauleNav from '@/layouts/Nav/DefauleNav.vue';
 import MainLayout from './../../layouts/MainLayout.vue';
 import DefaultSider from '@/layouts/Nav/DefaultSider.vue';
+import { useAppStore } from '@/store/useAppStore';
+
+const appStore = useAppStore();
+const { appConfig } = storeToRefs(appStore);
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.main-content {
+}
+</style>

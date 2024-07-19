@@ -41,4 +41,17 @@ export const mainRouter: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/background',
+    name: 'background',
+    components: {
+      default: () => import('@/views/MainView/index.vue'),
+    },
+    meta: {
+      title: '后台页面',
+      icon: enumIcon.Home16Regular,
+      fillIcon: enumIcon.Home16Filled,
+      showInMenu: true,
+    },
+  },
 ];
