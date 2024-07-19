@@ -22,7 +22,14 @@
     </template>
     <div class="main-content">
       <div class="main-content_header" v-if="appConfig.showNavigationTab">
-        页签
+        <n-breadcrumb>
+          <n-breadcrumb-item
+            v-for="breadcrumb in breadcrumbList"
+            :key="breadcrumb.path"
+          >
+            {{ breadcrumb.meta.title }}
+          </n-breadcrumb-item>
+        </n-breadcrumb>
       </div>
       <router-view></router-view>
     </div>
@@ -34,9 +41,15 @@ import DefauleNav from '@/layouts/Nav/DefauleNav.vue';
 import MainLayout from './../../layouts/MainLayout.vue';
 import DefaultSider from '@/layouts/Nav/DefaultSider.vue';
 import { useAppStore } from '@/store/useAppStore';
+import { Backpack16Filled } from '@vicons/fluent';
 
 const appStore = useAppStore();
 const { appConfig } = storeToRefs(appStore);
+const route = useRoute();
+
+const breadcrumbList = computed(() => {
+  return route.matched.slice(2);
+});
 </script>
 
 <style lang="scss" scoped>

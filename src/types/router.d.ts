@@ -14,3 +14,5 @@ declare module 'vue-router' {
     showInMenu?: boolean;
   }
 }
+
+declare module 'pinia-plugin-persist';
