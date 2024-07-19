@@ -3,6 +3,8 @@ import { createDiscreteApi } from 'naive-ui';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { mainRouter } from './children/mainRouter';
 import { useAppStore } from '@/store/useAppStore';
+import { useMenuStore } from '@/store/useMenuStore';
+import { isEmpty } from 'lodash-es';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -33,13 +35,24 @@ export const router = createRouter({
 });
 const { loadingBar } = createDiscreteApi(['loadingBar']);
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const appStore = useAppStore();
-  const { hasAuth } = appStore;
+  const { isLogin } = appStore;
   // 没有权限的路由拦截
-  if (!hasAuth && to.path !== '/login') {
+  if (!isLogin && to.path !== '/login') {
     next('/login');
     return;
+  }
+
+  // 动态路由刷新时处理
+  const menuStore = useMenuStore();
+  const { initRouter } = menuStore;
+  const { menuMap } = storeToRefs(menuStore);
+  if (isEmpty(menuMap.value) && to.path !== '/login') {
+    await initRouter();
+    next(false);
+    router.replace(to.fullPath);
+    return false;
   }
   const canJump = true;
   if (canJump) {
