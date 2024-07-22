@@ -21,6 +21,7 @@
       </router-view>
     </template>
     <div class="main-content">
+      <!-- 导航面包屑 -->
       <div class="main-content_header" v-if="appConfig.showNavigationTab">
         <n-breadcrumb>
           <n-breadcrumb-item
@@ -31,6 +32,8 @@
           </n-breadcrumb-item>
         </n-breadcrumb>
       </div>
+      <!-- 路由标签页 -->
+      <menu-tags></menu-tags>
       <router-view></router-view>
     </div>
   </main-layout>
@@ -41,6 +44,7 @@ import DefauleNav from '@/layouts/Nav/DefauleNav.vue';
 import MainLayout from './../../layouts/MainLayout.vue';
 import DefaultSider from '@/layouts/Nav/DefaultSider.vue';
 import { useAppStore } from '@/store/useAppStore';
+import MenuTags from '@/layouts/MenuTags/index.vue';
 import { Backpack16Filled } from '@vicons/fluent';
 
 const appStore = useAppStore();

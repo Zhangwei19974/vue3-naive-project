@@ -26,7 +26,9 @@ const activeKeyComp = computed(() => {
 });
 
 function menuUpdate(key: string, data: MenuOption) {
-  router.push(key);
+  router.push({
+    path: key,
+  });
 }
 </script>
 
