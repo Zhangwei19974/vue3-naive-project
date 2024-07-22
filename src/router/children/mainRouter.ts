@@ -66,5 +66,6 @@ export const mainRouter: RouteRecordRaw[] = [
       fillIcon: enumIcon.Home16Filled,
       showInMenu: true,
     },
+    children: [],
   },
 ];

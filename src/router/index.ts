@@ -5,6 +5,7 @@ import { mainRouter } from './children/mainRouter';
 import { useAppStore } from '@/store/useAppStore';
 import { useMenuStore } from '@/store/useMenuStore';
 import { isEmpty } from 'lodash-es';
+import { useMenuTag } from '@/store/useMenuTag';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -48,6 +49,7 @@ router.beforeEach(async (to, from, next) => {
   const menuStore = useMenuStore();
   const { initRouter } = menuStore;
   const { menuMap } = storeToRefs(menuStore);
+
   if (isEmpty(menuMap.value) && to.path !== '/login') {
     await initRouter();
     next(false);
@@ -55,13 +57,19 @@ router.beforeEach(async (to, from, next) => {
     return false;
   }
   // 实际路由跳转
+
+  // 添加菜单导航
+
+  const { addMenuTag } = useMenuTag();
+
   const canJump = true;
   if (canJump) {
     console.log(to);
     document.title = to.meta.title as string;
 
     loadingBar.start();
-    const res = next();
+    next();
+    addMenuTag(to, from);
   }
   // loadingBar.finish();
 });
