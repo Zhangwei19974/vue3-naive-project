@@ -3,9 +3,11 @@
     asdasd
 
     <n-button @click="getFiles">点击</n-button>
+
     <n-cascader
+      v-model:value="cascaderValue"
       :options="cascaderOptions"
-      value-field="name"
+      value-field="value"
       label-field="name"
       check-strategy="child"
     ></n-cascader>
@@ -17,9 +19,10 @@ import { set } from 'lodash-es';
 import { CascaderOption, NCascader } from 'naive-ui';
 
 const route = useRoute();
+
+const cascaderValue = ref([]);
 const cascaderOptions = computed(() => {
   let files = import.meta.glob('@/**/**.vue');
-
   let options = getCascaderOptions(Object.keys(files));
   console.log(options);
 
@@ -41,12 +44,15 @@ function getCascaderOptions(paths: string[]): CascaderOption[] {
         currentNode = existingNode;
       } else {
         if (!isLastPart) {
+          let value = parts.slice(0, index + 1).join('/');
           currentNode = {
+            value: value,
             name: part,
             children: [],
           };
         } else {
           currentNode = {
+            value: parts.join('/'),
             name: part,
           };
         }
