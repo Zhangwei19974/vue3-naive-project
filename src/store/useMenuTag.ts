@@ -9,6 +9,9 @@ export const useMenuTag = defineStore(
     const router = useRouter();
     // 添加菜单标签页
     const addMenuTag = (menuTag: any, fromTag?: any) => {
+      if (!menuTag.meta.title) {
+        return;
+      }
       let currentIndex = -1;
       const currentItem = menuTagList.value.find((item: any, index: number) => {
         if (item.path === menuTag.path) {

@@ -11,13 +11,14 @@
           {{ item?.meta?.title }}
         </n-tag>
       </n-dropdown>
+      <div class="MenuTags_line"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMenuTag } from '@/store/useMenuTag';
-import { NDropdown } from 'naive-ui';
+import { NDropdown, useThemeVars } from 'naive-ui';
 import { RouteRecordRaw } from 'vue-router';
 
 const menuTags = useMenuTag();
@@ -26,6 +27,8 @@ const { menuTagList } = storeToRefs(menuTags);
 
 const route = useRoute();
 const router = useRouter();
+
+const theme = useThemeVars();
 
 const activeTag = computed(() => {
   return route.path;
@@ -44,5 +47,6 @@ function clickTag(item: RouteRecordRaw) {
 <style lang="scss" scoped>
 .MenuTags {
   display: flex;
+  border-bottom: 1px solid v-bind('theme.borderColor');
 }
 </style>

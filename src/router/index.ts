@@ -51,7 +51,6 @@ router.beforeEach(async (to, from, next) => {
   const { menuMap } = storeToRefs(menuStore);
 
   if (isEmpty(menuMap.value) && to.path !== '/login') {
-    console.log(to);
     await initRouter();
     next(false);
     router.replace(to.fullPath);

@@ -4,7 +4,7 @@ export const useAppStore = defineStore(
     const isLogin = ref(false);
     const appConfig = ref({
       // 是否展示导航页签
-      showNavigationTab: true,
+      showNavigationTab: false,
     });
 
     return {
