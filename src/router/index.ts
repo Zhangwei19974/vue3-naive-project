@@ -54,8 +54,12 @@ router.beforeEach(async (to, from, next) => {
     router.replace(to.fullPath);
     return false;
   }
+  // 实际路由跳转
   const canJump = true;
   if (canJump) {
+    console.log(to);
+    document.title = to.meta.title as string;
+
     loadingBar.start();
     const res = next();
   }

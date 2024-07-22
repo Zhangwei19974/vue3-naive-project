@@ -15,6 +15,12 @@ export const useAppStore = defineStore(
   {
     persist: {
       enabled: true, //Store中数据持久化生效
+      strategies: [
+        {
+          key: 'appStore',
+          storage: localStorage,
+        },
+      ],
     },
   },
 );
