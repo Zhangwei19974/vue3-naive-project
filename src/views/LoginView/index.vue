@@ -17,7 +17,6 @@ const { initRouter } = menuStroe;
 const router = useRouter();
 
 async function login() {
-  console.log('login');
   isLogin.value = true;
   await initRouter();
   router.push('/');

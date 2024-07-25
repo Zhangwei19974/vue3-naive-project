@@ -20,7 +20,6 @@ const cascaderValue = ref([]);
 const cascaderOptions = computed(() => {
   let files = import.meta.glob('@/**/**.vue');
   let options = getCascaderOptions(Object.keys(files));
-  console.log(options);
 
   return options;
 });

@@ -9,6 +9,10 @@ export const useMenuTag = defineStore(
     const router = useRouter();
     // 添加菜单标签页
     const addMenuTag = (menuTag: any, fromTag?: any) => {
+      // 过滤不显示的菜单
+      if (menuTag.matched?.[1]?.path !== '/main') {
+        return;
+      }
       if (!menuTag.meta.title) {
         return;
       }
@@ -67,7 +71,6 @@ export const useMenuTag = defineStore(
       if (deledList.find((delTag: any) => delTag.path === route.path)) {
         router.push(menuTagList.value[menuTagList.value.length - 1].path);
       }
-      console.log(deledList);
 
       // menuTagList.value.splice(menuTagList.value.indexOf(menuTag) + 1);
     };

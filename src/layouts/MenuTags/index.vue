@@ -75,7 +75,6 @@ function clickTag(item: RouteRecordRaw) {
 }
 
 function handleRightSelect(data: string) {
-  console.log(data);
   let rightSelectMapFun = {
     closeRight: () => {
       delRightMenuTag(rightClickItem.value);
@@ -90,7 +89,7 @@ function handleRightSelect(data: string) {
 
 function handleContextmenu(e: MouseEvent, item: any) {
   e.preventDefault();
-  console.log(e);
+
   rightClickItem.value = item;
   rightMenuConfig.show = true;
   rightMenuConfig.x = e.clientX;

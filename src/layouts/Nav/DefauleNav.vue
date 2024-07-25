@@ -60,10 +60,8 @@ const activeKeyComp = computed(() => {
 });
 
 function clickSetting(key: string) {
-  console.log(key);
   const settingFunMap = {
     setting: () => {
-      console.log(':setting');
       router.push({
         path: '/background',
       });
