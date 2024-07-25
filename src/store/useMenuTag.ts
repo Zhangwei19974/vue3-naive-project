@@ -89,7 +89,7 @@ export const useMenuTag = defineStore(
   },
   {
     persist: {
-      enabled: true, //Store中数据持久化生效
+      storage: localStorage,
     },
   },
 );
