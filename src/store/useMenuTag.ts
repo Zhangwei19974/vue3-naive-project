@@ -43,8 +43,8 @@ export const useMenuTag = defineStore(
       menuTagList.value = menuTagListCache;
     };
     // 删除菜单标签页
-    const delMenuTag = (menuTag: any) => {
-      const path = menuTag.path;
+    const delMenuTag = (menuTag?: any) => {
+      const path = menuTag?.path || route.path;
       let currentIndex = -1;
       menuTagList.value.find((menuTagItem: any, index: number) => {
         if (menuTagItem.path === path) {
@@ -60,7 +60,15 @@ export const useMenuTag = defineStore(
       }
     };
     // 删除右侧标签页
-    const delRightMenuTag = (menuTag: any) => {
+    const delRightMenuTag = (menuTag?: any) => {
+      const deledList = menuTagList.value.splice(
+        menuTagList.value.indexOf(menuTag) + 1,
+      );
+      if (deledList.find((delTag: any) => delTag.path === route.path)) {
+        router.push(menuTagList.value[menuTagList.value.length - 1].path);
+      }
+      console.log(deledList);
+
       // menuTagList.value.splice(menuTagList.value.indexOf(menuTag) + 1);
     };
     return { menuTagList, addMenuTag, delMenuTag, delRightMenuTag };

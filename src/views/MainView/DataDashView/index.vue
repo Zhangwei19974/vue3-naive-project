@@ -1,9 +1,5 @@
 <template>
   <div>
-    asdasd
-
-    <n-button @click="getFiles">点击</n-button>
-
     <n-cascader
       v-model:value="cascaderValue"
       :options="cascaderOptions"

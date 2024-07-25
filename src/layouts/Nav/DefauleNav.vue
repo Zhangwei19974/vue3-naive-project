@@ -17,7 +17,7 @@
         v-for="config in settingConfig"
         :key="config.id"
       >
-        <n-icon>
+        <n-icon size="14">
           <component :is="config.icon" />
         </n-icon>
       </div>
@@ -26,17 +26,24 @@
 </template>
 
 <script setup lang="ts">
-import { MenuOption, NIcon } from 'naive-ui';
+import { MenuOption, NIcon, useThemeVars } from 'naive-ui';
 import { useMenuStore } from '@/store/useMenuStore';
 import { User } from '@vicons/fa';
+import { Settings28Filled } from '@vicons/fluent';
 
 const menuStroe = useMenuStore();
 const { collapsedConfig } = storeToRefs(menuStroe);
 const { navComp } = storeToRefs(menuStroe);
+const themeVars = useThemeVars();
 const settingConfig = [
   {
     id: 'user',
     icon: User,
+    optinos: [],
+  },
+  {
+    id: 'setting',
+    icon: Settings28Filled,
     optinos: [],
   },
 ];
@@ -55,6 +62,7 @@ function menuUpdate(key: string, data: MenuOption) {
 
 <style lang="scss" scoped>
 $nav-span: 10px;
+$setting-icon-size: 30px;
 .default-nav {
   // background-color: #bd4d4d;
   display: flex;
@@ -70,6 +78,17 @@ $nav-span: 10px;
     align-items: center;
     padding: 0 $nav-span;
     gap: $nav-span;
+    .nav-setting_item {
+      width: $setting-icon-size;
+      height: $setting-icon-size;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        background-color: v-bind('themeVars.buttonColor2Hover');
+      }
+    }
   }
 }
 :deep(.n-menu-item-content--selected) {
