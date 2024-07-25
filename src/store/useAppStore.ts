@@ -7,9 +7,17 @@ export const useAppStore = defineStore(
       showNavigationTab: false,
     });
 
+    function init() {
+      appConfig.value = {
+        showNavigationTab: false,
+      };
+      isLogin.value = false;
+    }
+
     return {
       isLogin,
       appConfig,
+      init,
     };
   },
   {

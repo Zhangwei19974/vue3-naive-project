@@ -71,7 +71,17 @@ export const useMenuTag = defineStore(
 
       // menuTagList.value.splice(menuTagList.value.indexOf(menuTag) + 1);
     };
-    return { menuTagList, addMenuTag, delMenuTag, delRightMenuTag };
+
+    function init() {
+      menuTagList.value = [];
+    }
+    return {
+      menuTagList,
+      addMenuTag,
+      delMenuTag,
+      delRightMenuTag,
+      init,
+    };
   },
   {
     persist: {

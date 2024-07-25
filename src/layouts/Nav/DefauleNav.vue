@@ -12,14 +12,14 @@
     />
     <!-- 设置按钮 -->
     <div class="nav-setting">
-      <div
-        class="nav-setting_item"
-        v-for="config in settingConfig"
-        :key="config.id"
-      >
-        <n-icon size="14">
-          <component :is="config.icon" />
-        </n-icon>
+      <div v-for="config in settingConfig" :key="config.id">
+        <n-dropdown :options="config.options" @select="clickSetting">
+          <div class="nav-setting_item">
+            <n-icon size="14">
+              <component :is="config.icon" />
+            </n-icon>
+          </div>
+        </n-dropdown>
       </div>
     </div>
   </div>
@@ -30,6 +30,7 @@ import { MenuOption, NIcon, useThemeVars } from 'naive-ui';
 import { useMenuStore } from '@/store/useMenuStore';
 import { User } from '@vicons/fa';
 import { Settings28Filled } from '@vicons/fluent';
+import { initStore } from '@/utils/funs';
 
 const menuStroe = useMenuStore();
 const { collapsedConfig } = storeToRefs(menuStroe);
@@ -39,12 +40,15 @@ const settingConfig = [
   {
     id: 'user',
     icon: User,
-    optinos: [],
+    options: [],
   },
   {
     id: 'setting',
     icon: Settings28Filled,
-    optinos: [],
+    options: [
+      { label: '设置', key: 'setting' },
+      { label: '退出', key: 'exit' },
+    ],
   },
 ];
 
@@ -54,6 +58,25 @@ const route = useRoute();
 const activeKeyComp = computed(() => {
   return route.matched[2]?.path;
 });
+
+function clickSetting(key: string) {
+  console.log(key);
+  const settingFunMap = {
+    setting: () => {
+      console.log(':setting');
+      router.push({
+        path: '/background',
+      });
+    },
+    exit: () => {
+      initStore();
+      router.push({
+        path: '/',
+      });
+    },
+  };
+  settingFunMap[key as keyof typeof settingFunMap]?.();
+}
 
 function menuUpdate(key: string, data: MenuOption) {
   router.push(key);
