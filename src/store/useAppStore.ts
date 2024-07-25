@@ -4,12 +4,12 @@ export const useAppStore = defineStore(
     const isLogin = ref(false);
     const appConfig = ref({
       // 是否展示导航页签
-      showNavigationTab: false,
+      showNavigationTab: true,
     });
 
     function init() {
       appConfig.value = {
-        showNavigationTab: false,
+        showNavigationTab: true,
       };
       isLogin.value = false;
     }

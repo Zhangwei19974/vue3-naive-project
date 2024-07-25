@@ -10,7 +10,8 @@ export const useMenuTag = defineStore(
     // 添加菜单标签页
     const addMenuTag = (menuTag: any, fromTag?: any) => {
       // 过滤不显示的菜单
-      if (menuTag.matched?.[1]?.path !== '/main') {
+
+      if (menuTag.matched?.[1]?.path !== '/front') {
         return;
       }
       if (!menuTag.meta.title) {

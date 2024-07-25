@@ -2,7 +2,7 @@ import { router } from '@/router';
 import { createPinia } from 'pinia';
 import { App } from 'vue';
 
-import piniaPersist from 'pinia-plugin-persist';
+import piniaPersist from 'pinia-plugin-persistedstate';
 
 const pinia = createPinia();
 pinia.use(piniaPersist);
