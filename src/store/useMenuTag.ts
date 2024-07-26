@@ -3,22 +3,32 @@ import { cloneDeep } from 'lodash-es';
 export const useMenuTag = defineStore(
   'menuTag',
   () => {
-    const menuTagList = ref<any>([]);
+    const menuTagList = computed(() => {
+      console.log('menuTagListMap', menuTagListMap.value);
+
+      return menuTagListMap.value[route.matched?.[1]?.path] || [];
+    });
+
+    const menuTagListMap = ref<Record<string, any[]>>({});
 
     const route = useRoute();
     const router = useRouter();
     // 添加菜单标签页
     const addMenuTag = (menuTag: any, fromTag?: any) => {
       // 过滤不显示的菜单
-
-      if (menuTag.matched?.[1]?.path !== '/front') {
+      const menuTagPath = menuTag.matched?.[1]?.path;
+      if (!menuTagPath) {
         return;
       }
+      if (!menuTagListMap.value[menuTagPath]) {
+        menuTagListMap.value[menuTagPath] = [];
+      }
+      const menuTagListCache = menuTagListMap.value[menuTagPath];
       if (!menuTag.meta.title) {
         return;
       }
       let currentIndex = -1;
-      const currentItem = menuTagList.value.find((item: any, index: number) => {
+      const currentItem = menuTagListCache.find((item: any, index: number) => {
         if (item.path === menuTag.path) {
           currentIndex = index;
           return true;
@@ -30,7 +40,7 @@ export const useMenuTag = defineStore(
       // 默认在列表后面添加
       let fromTagIndex = -1;
       if (fromTag) {
-        const currentFromTag = menuTagList.value.find(
+        const currentFromTag = menuTagListCache.find(
           (item: any, index: number) => {
             if (item.path === fromTag.path) {
               fromTagIndex = index;
@@ -39,13 +49,13 @@ export const useMenuTag = defineStore(
           },
         );
       }
-      if (menuTagList.value.length === 0 || fromTagIndex === -1) {
-        menuTagList.value.push(menuTag);
+      if (menuTagListCache.length === 0 || fromTagIndex === -1) {
+        menuTagListCache.push(menuTag);
         return;
       }
-      const menuTagListCache = cloneDeep(menuTagList.value);
+      // const menuTagListCache = cloneDeep(menuTagList.value);
       menuTagListCache.splice(fromTagIndex + 1, 0, menuTag);
-      menuTagList.value = menuTagListCache;
+      // menuTagList.value = menuTagListCache;
     };
     // 删除菜单标签页
     const delMenuTag = (menuTag?: any) => {
@@ -77,13 +87,14 @@ export const useMenuTag = defineStore(
     };
 
     function init() {
-      menuTagList.value = [];
+      menuTagListMap.value = {};
     }
     return {
       menuTagList,
       addMenuTag,
       delMenuTag,
       delRightMenuTag,
+      menuTagListMap,
       init,
     };
   },

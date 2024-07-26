@@ -45,7 +45,6 @@ import MainLayout from './../../layouts/MainLayout.vue';
 import DefaultSider from '@/layouts/Nav/DefaultSider.vue';
 import { useAppStore } from '@/store/useAppStore';
 import MenuTags from '@/layouts/MenuTags/index.vue';
-import { Backpack16Filled } from '@vicons/fluent';
 
 const appStore = useAppStore();
 const { appConfig } = storeToRefs(appStore);
